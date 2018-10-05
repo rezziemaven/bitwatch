@@ -1,14 +1,9 @@
 'use strict';
-const Product = require('../models/product.model');
-const { getSharedProducts } = require('../helpers/moneeda-api.helper');
+const { Products, Prices } = require('../models');
 
 exports.getProducts = async (ctx) => {
   try {
-    let products = await Product.find({},'product_name').sort({product_name:1});
-    if (!products.length) {
-      await exports.postProducts();
-      products = await Product.find({},'product_name').sort({product_name:1});
-    }
+    const products = await Products();
     ctx.body = products;
     ctx.status = 200;
   }
@@ -18,22 +13,14 @@ exports.getProducts = async (ctx) => {
   }
 }
 
-exports.getPrices = () => {
-
-}
-
-exports.postProducts = async (ctx) => {
+exports.getPrices = async (ctx) => {
   try {
-    const products = await getSharedProducts();
-    const result = products.reduce((acc,product) => {
-      acc.push({product_name: product});
-      return acc;
-    },[]);
-    return await Product.create(result);
-
+    const prices = await Prices(ctx.params.PRODUCT);
+    ctx.body = prices;
+    ctx.status = 200;
   }
-  catch (error) {
-    console.error(error); // eslint-disable-line no-console
+  catch (err) {
+    ctx.status = 500;
+    throw new Error('No prices found.');
   }
-
-}
+};
