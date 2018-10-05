@@ -8,7 +8,6 @@ const cors = require('@koa/cors');
 
 const port = process.env.PORT || 3000;
 
-require('./db');
 const router = require ('./router');
 
 app
