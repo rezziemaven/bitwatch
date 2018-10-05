@@ -11,7 +11,7 @@ const productSchema = new Schema({
   },
   price_BFX: {
     type: Number,
-    default: 0
+    default: 0,
   },
   price_BNB: {
     type: Number,
@@ -20,9 +20,17 @@ const productSchema = new Schema({
   price_BTX: {
     type: Number,
     default: 0
+  },
+  created_at: {
+    type: Date,
+    default: new Date()
+  },
+  updated_at: {
+    type: Date,
+    default: new Date()
   }
 });
 
-const Products = mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
 
-module.exports = Products;
+module.exports = Product;
