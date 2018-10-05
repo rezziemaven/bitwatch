@@ -1,15 +1,8 @@
 'use strict';
-require('dotenv').config();
 const axios = require('axios');
-const {MONEEDA_BASE_URL, MONEEDA_API_TOKEN} = process.env;
+const { getProducts } = require('../services/moneeda-api.service');
 
-const productURL = exchange => `${MONEEDA_BASE_URL}/api/exchanges/${exchange}/products`;
-
-const getProducts = (exchange) => axios.get(productURL(exchange),{
-  headers: {'Authorization': `Bearer ${MONEEDA_API_TOKEN}`},
-}).then(response => response.data);
-
-exports.getSharedProducts = async () => {
+const getSharedProducts = async () => {
   try {
     const allProducts = await axios.all([getProducts('BFX'),getProducts('BNB'),getProducts('BTX')]);
     const [BFX,BNB,BTX] = allProducts;
@@ -25,8 +18,8 @@ exports.getSharedProducts = async () => {
     return sharedProducts;
   }
   catch (error) {
-    console.error(error);
+    console.error(error); // eslint-disable-line no-console
   }
-}
+};
 
-exports.getSharedProducts();
+module.exports = getSharedProducts;
