@@ -1,0 +1,24 @@
+{
+  "name": "bitwatch-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "Sherezz Grant",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "koa": "^2.5.3",
+    "koa-cors": "0.0.16",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}

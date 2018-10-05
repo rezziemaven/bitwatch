@@ -1,0 +1,11 @@
+# VS Code Settings
+/.vscode
+
+# DS Store
+.DS_Store
+
+# Dependencies
+/node_modules
+
+# Environment variables
+.env
