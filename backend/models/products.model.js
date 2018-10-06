@@ -8,13 +8,15 @@ const getSharedProducts = async () => {
     const [BFX,BNB,BTX] = allProducts;
     const spread = [...BFX,...BNB,...BTX];
     const products = spread.reduce((acc,product) => {
-      acc[product.id] = acc[product.id]+1 || 1;
+      // acc[product.id] = acc[product.id]+1 || 1;
+      acc[product.product] = acc[product.product]+1 || 1;
       return acc;
     },{});
     let sharedProducts = [];
     for (let product in products) {
       if (products[product] === 3) sharedProducts.push(product);
     }
+    sharedProducts.sort();
     return sharedProducts;
   }
   catch (error) {
