@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-import 'components/styles/App.css';
+import 'styles/App.css';
+import { Welcome, CardList } from 'components';
 
 class App extends Component {
 
@@ -10,6 +12,9 @@ class App extends Component {
     super(props);
     this.state = {
       product: '',
+      products: [],
+      prices: {},
+      fetching: false
     }
   }
 
@@ -19,13 +24,48 @@ class App extends Component {
     });
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
     this.productName = this.state.product.length ? this.state.product : this.productName;
     this.setState({
       product: '',
-    })
+    });
+    if (this.productName) await this.getPrices(this.productName);
   }
+
+  getProducts = async () => {
+    this.setState({fetching: true});
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/products`);
+    this.setState({products: response.data});
+    this.setState({fetching: false});
+  }
+
+  getPrices = async (product) => {
+    this.setState({fetching: true});
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/products/${product}/prices`);
+    this.setState({
+      prices: {...this.state.prices,[product]: response.data.prices}
+    });
+    this.setState({fetching: false});
+    console.log(this.state.prices);
+  }
+
+  renderDataListOptions = () => {
+    return this.state.products.map((product, i) => (
+      <option key = {i} value={product} />
+    ))
+  }
+
+  renderCardItems = (product) => {
+    return this.state.prices[product].map((el, i) => (
+      <div key={i}>
+        <strong>{el.exchange}</strong>
+        <h2>{el.price}</h2>
+      </div>
+    ))
+  }
+
+  componentDidMount() {this.getProducts()};
 
   render () {
     return (
@@ -36,54 +76,28 @@ class App extends Component {
           <form onSubmit={this.handleSubmit}>
             <input type='text' onChange={this.handleInput} list='products' value={this.state.product} placeholder='Select product' />
             <datalist id='products'>
-              <option value='animal'></option>
-              <option value='barber'></option>
-              <option value='cactus'></option>
-              <option value='diagonal'></option>
-              <option value='eggplant'></option>
+            {this.renderDataListOptions()}
             </datalist>
-            <input type='submit' value='Submit' />
+            <input type='submit' value='Get prices' />
           </form>
           {this.productName.length > 0 ?
             (
-              <h3>Today's prices for</h3>
+              <h3>Current prices for</h3>
             ) :
-              <h3> </h3>
+              ''
             }
             <h1>{this.productName} </h1>
         </div>
-
-            {this.productName.length > 0 ?
-            (
-              <div className='CardList'>
-                <div>
-                  <strong>BTX</strong>
-                  <h2>0.015704</h2>
-                </div>
-                <div>
-                  <strong>BFX</strong>
-                  <h2>0.015670</h2>
-                </div>
-                <div>
-                  <strong>BNB</strong>
-                  <h2>0.015654</h2>
-                </div>
-              </div>
-            ) :
-            (
-              <div className='Welcome'>
-                <p>
-                  Welcome to <strong>bitwatch</strong>.
-                  <br /><br />
-                  Please select a product from the input above to see the current prices across the BTX, BNB and BFX exchanges.
-                </p>
-              </div>
-            )
-          }
+          {this.productName.length > 0 && !this.fetching ?
+          (
+            <div className='CardList'>
+              { this.state.prices[this.productName] ? this.renderCardItems(this.productName): ''}
+            </div>
+          ) : <Welcome />
+        }
       </div>
     );
   }
   }
-
 
 export default App;
