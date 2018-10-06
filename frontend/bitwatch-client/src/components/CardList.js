@@ -1,18 +1,19 @@
 import React from 'react';
 
-const renderCardItems = (product) => {
-  return this.state.prices[product].map((el, i) => (
-    <div key={i}>
-      <strong>{el.exchange}</strong>
-      <h2>{el.price}</h2>
+const CardList = ({productName, prices}) => {
+  const renderCardItems = (product) => {
+    return prices[product].map((el, i) => (
+      <div key={i}>
+        <strong>{el.exchange}</strong>
+        <h2>{el.price}</h2>
+      </div>
+    ))
+  };
+  return (
+    <div className='CardList'>
+      { prices[productName] ? renderCardItems(productName): ''}
     </div>
-  ))
+  );
 }
-
-const CardList = ({productName}) => (
-  <div className='CardList'>
-    { this.state.prices[productName] ? renderCardItems(productName): ''}
-  </div>
-);
 
 export default CardList;
