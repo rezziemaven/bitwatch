@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 import 'styles/App.css';
 import { Welcome, CardList } from 'components';
+import { setProductName, setProducts, savePrices } from 'actions';
 
 class App extends Component {
-
-  productName = '';
-
   constructor(props) {
     super(props);
     this.state = {
       product: '',
-      products: [],
-      prices: {},
-      fetching: false
+      productsFetching: false,
+      pricesFetching: false,
+      showWelcome: true
     }
   }
 
@@ -26,42 +25,30 @@ class App extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    this.productName = this.state.product.length ? this.state.product : this.productName;
-    this.setState({
-      product: '',
-    });
-    if (this.productName) await this.getPrices(this.productName);
+    this.setState ({showWelcome: false});
+    if (this.state.product.length) await this.props.setProductName(this.state.product);
+    this.setState({product: ''});
+    if (this.props.productName) await this.getPrices(this.props.productName);
   }
 
   getProducts = async () => {
-    this.setState({fetching: true});
+    this.setState({productsFetching: true});
     const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/products`);
-    this.setState({products: response.data});
-    this.setState({fetching: false});
+    this.props.setProducts(response.data);
+    this.setState({productsFetching: false});
   }
 
   getPrices = async (product) => {
-    this.setState({fetching: true});
+    this.setState({pricesFetching: true});
     const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/products/${product}/prices`);
-    this.setState({
-      prices: {...this.state.prices,[product]: response.data.prices}
-    });
-    this.setState({fetching: false});
-    console.log(this.state.prices);
+    this.props.savePrices(response.data);
+    this.setState({pricesFetching: false});
+    console.log(this.props.prices);
   }
 
   renderDataListOptions = () => {
-    return this.state.products.map((product, i) => (
+    return this.props.products.map((product, i) => (
       <option key = {i} value={product} />
-    ))
-  }
-
-  renderCardItems = (product) => {
-    return this.state.prices[product].map((el, i) => (
-      <div key={i}>
-        <strong>{el.exchange}</strong>
-        <h2>{el.price}</h2>
-      </div>
     ))
   }
 
@@ -70,6 +57,7 @@ class App extends Component {
   render () {
     return (
       <div className='App'>
+      {!this.state.productsFetching ? (
         <div className='Header'>
           <h1>bitwatch</h1>
           {/* <h3>The cryptocurrency tracker</h3> */}
@@ -80,24 +68,28 @@ class App extends Component {
             </datalist>
             <input type='submit' value='Get prices' />
           </form>
-          {this.productName.length > 0 ?
-            (
-              <h3>Current prices for</h3>
-            ) :
-              ''
-            }
-            <h1>{this.productName} </h1>
+          {this.props.productName.length > 0 ?
+            (<h3>Current prices for</h3>) : ''}
+            <h1>{this.props.productName} </h1>
         </div>
-          {this.productName.length > 0 && !this.fetching ?
-          (
-            <div className='CardList'>
-              { this.state.prices[this.productName] ? this.renderCardItems(this.productName): ''}
-            </div>
-          ) : <Welcome />
-        }
+        ) : ''}
+        {!this.state.pricesFetching ? <CardList prices = {this.props.prices} productName = {this.props.productName} /> : ''}
+        {this.state.showWelcome ? <Welcome /> : ''}
       </div>
     );
   }
-  }
+}
 
-export default App;
+const mapStateToProps = (state) => ({
+  productName: state.productName,
+  products: state.products,
+  prices: state.prices
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setProductName: (productName) => dispatch(setProductName(productName)),
+  setProducts: (products) => dispatch(setProducts(products)),
+  savePrices: (prices) => dispatch(savePrices(prices))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
