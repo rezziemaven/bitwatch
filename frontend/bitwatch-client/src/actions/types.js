@@ -1,0 +1,3 @@
+export const SET_PRODUCT_NAME = 'SET_PRODUCT_NAME';
+export const SET_PRODUCTS = 'SET_PRODUCTS';
+export const SAVE_PRICES = 'SAVE_PRICES';
