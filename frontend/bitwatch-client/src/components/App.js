@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import 'styles/App.css';
-import { Welcome, CardList } from 'components';
+import { Welcome, CardList, Search } from 'components';
 import { setProductName, setProducts, savePrices } from 'actions';
 
 class App extends Component {
@@ -13,43 +13,36 @@ class App extends Component {
       product: '',
       productsFetching: false,
       pricesFetching: false,
-      showWelcome: true
+      showWelcome: false,
+      showCards: false,
     }
   }
 
-  handleInput = event => {
-    this.setState({
-      product: event.target.value
-    });
+  getValue = (valueFromFilter) => {
+    this.setState({product: valueFromFilter});
   }
 
   handleSubmit = async event => {
     event.preventDefault();
-    this.setState ({showWelcome: false});
-    if (this.state.product.length) await this.props.setProductName(this.state.product);
-    this.setState({product: ''});
-    if (this.props.productName) await this.getPrices(this.props.productName);
+    if (this.state.product.length) {
+      this.setState ({showWelcome: false, showCards: true});
+      if (this.state.product.length) await this.props.setProductName(this.state.product.toUpperCase());
+      if (this.props.productName) await this.getPrices(this.props.productName);
+    }
   }
 
   getProducts = async () => {
     this.setState({productsFetching: true});
     const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/products`);
     this.props.setProducts(response.data);
-    this.setState({productsFetching: false});
+    this.setState({productsFetching: false, showWelcome: true});
   }
 
   getPrices = async (product) => {
     this.setState({pricesFetching: true});
     const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/products/${product}/prices`);
-    this.props.savePrices(response.data);
+    if (response.data.prices.some(el => el.price>0)) await this.props.savePrices(response.data);
     this.setState({pricesFetching: false});
-    console.log(this.props.prices);
-  }
-
-  renderDataListOptions = () => {
-    return this.props.products.map((product, i) => (
-      <option key = {i} value={product} />
-    ))
   }
 
   componentDidMount() {this.getProducts()};
@@ -59,21 +52,22 @@ class App extends Component {
       <div className='App'>
       {!this.state.productsFetching ? (
         <div className='Header'>
-          <h1>bitwatch</h1>
-          {/* <h3>The cryptocurrency tracker</h3> */}
+          <img src='logo.png' alt='logo' />
           <form onSubmit={this.handleSubmit}>
-            <input type='text' onChange={this.handleInput} list='products' value={this.state.product} placeholder='Select product' />
-            <datalist id='products'>
-            {this.renderDataListOptions()}
-            </datalist>
-            <input type='submit' value='Get prices' />
+            <Search setValue={this.getValue} value={this.state.product} options={this.props.products} />
+            <input style={!this.state.product ? {
+              backgroundColor: '#C0C0C0',
+              backgroundImage: 'none',
+              boxShadow: 'none'}
+              : {}} type='submit' value='Get prices' />
           </form>
-          {this.props.productName.length > 0 ?
+          {this.props.prices[this.props.productName] ?
             (<h3>Current prices for</h3>) : ''}
-            <h1>{this.props.productName} </h1>
+          {this.props.prices[this.props.productName] ?
+          <h1 className='ProductName'>{this.props.productName} </h1> : <h1> </h1>}
         </div>
         ) : ''}
-        {!this.state.pricesFetching ? <CardList prices = {this.props.prices} productName = {this.props.productName} /> : ''}
+        {!this.state.pricesFetching && this.props.productName ? <CardList prices = {this.props.prices} productName = {this.props.productName} /> : ''}
         {this.state.showWelcome ? <Welcome /> : ''}
       </div>
     );

@@ -1,12 +1,18 @@
 import React from 'react';
 
-const Welcome = ({somethinghere}) => (
-  <div className='Welcome'>
-    <p>
-      Welcome to <strong>bitwatch</strong>.
-      <br /><br />
-      Please select a product from the input above to see the current prices across the BTX, BNB and BFX exchanges.
-    </p>
+import 'styles/Welcome.css';
+
+const Welcome = () => (
+  <div className='Welcome animated animatedFadeInUp fadeInUp'>
+    <div className='Content'>
+      <p>
+        Welcome to
+        <br />
+        <span><strong>bitwatch</strong></span>.</p>
+        <p><strong>Bitwatch</strong> shows
+        the current prices for shared cryptocurrencies across the BTX, BNB and BFX exchanges.</p>
+        <p>Please select a product from the input above to get started.</p>
+    </div>
   </div>
 );
 

@@ -1,0 +1,152 @@
+.CardList {
+  width: 85%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* background-color: #EFF4FA; */
+  padding: 0 2%;
+}
+
+.CardList>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: black;
+  background-color: #fed324;
+  background-image: radial-gradient(circle farthest-corner at 10% 20%,
+    rgba(248, 236, 79, 1) 0%,
+    rgba(249, 249, 103, 1) 90%);
+  border-radius: 4px;
+  padding: 20px;
+  height: 80px;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.CardList>div:hover {
+  filter: brightness(109%);
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.4);
+  width: 110%;
+  height: 170px;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+.CardList>div>h2 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+/* .CardList>div:hover {
+  height: 33%;
+} */
+
+.OneCard {
+  height: auto !important;
+  width: 100% !important;
+  padding: 15px !important;
+}
+
+.NotFound {
+  background-color: rgba(43, 58, 103, 1) !important;
+  background-image: radial-gradient(circle farthest-corner at 10% 20%,
+    rgba(43, 58, 103, 1) 0%,
+    rgba(43, 58, 103, 1) 90%) !important;
+  color: white !important;
+  text-align: center;
+}
+
+.NotFound>h2 {
+  font-size: 1rem !important;
+  font-weight: 300;
+}
+
+.NotFound>h3 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.NotFound:hover {
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2) !important;
+  filter: none !important;
+}
+
+@media screen and (max-height: 670px) {
+  .CardList>div {
+    padding: 10px 0;
+    height: 30%;
+  }
+
+  .CardList>div>h2 {
+    margin: 0;
+    font-size: 1.6rem;
+  }
+
+  .CardList>div:hover {
+    height: 33%;
+  }
+}
+
+@media screen and (min-height: 671px) {
+  .CardList>div {
+    height: 150px;
+  }
+
+  .CardList>div:nth-child(2) {
+    margin: 20px 0;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-height: 500px) {
+  .CardList {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .CardList>div {
+    height: 80%;
+  }
+
+  .CardList>div:nth-child(2) {
+    margin: 0 10px;
+  }
+
+  .CardList>div>h2 {
+    font-size: 1.6rem;
+  }
+
+  .CardList>div:hover {
+    height: 100%;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .CardList {
+    flex-direction: row;
+  }
+
+  .CardList>div:nth-child(2) {
+    margin: 0 40px;
+  }
+}
+
+.CardList>div:first-child {
+  background-color: #32d36b;
+  background-image: radial-gradient(circle 767px at 10.2% 22.1%,
+    rgba(11, 218, 81, 1) 0%,
+    rgba(11, 218, 111, 1) 90%);
+  color: white;
+}
+
+.CardList>div:last-child {
+  background-color: #fe5455;
+  background-image: radial-gradient(circle farthest-corner at 10% 20%,
+    rgba(240, 54, 54, 1) 0%,
+    rgba(212, 68, 122, 1) 90%);
+  color: white;
+  align-self: center;
+}
