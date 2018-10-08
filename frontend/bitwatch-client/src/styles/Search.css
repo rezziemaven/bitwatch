@@ -1,0 +1,42 @@
+.Search {
+  position: relative;
+  flex: 1;
+}
+
+input[type='text'] {
+  font-size: 1.2rem;
+  height: 40px;
+}
+
+.Icon {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  color: black;
+  font-size: 30px;
+  height: 40px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  color: black;
+  overflow-y: auto;
+  max-height: 150px;
+  position: absolute;
+  top: 41px;
+  width: 100%;
+}
+
+li {
+  padding: 10px 0;
+  padding-left: 20px;
+}
+
+li:hover {
+  background-color: #ebebeb;
+}
