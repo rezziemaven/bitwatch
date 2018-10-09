@@ -2,10 +2,10 @@
 const Router = require('koa-router');
 const router = new Router();
 
-const productController = require('./controllers/product.controller');
+const { ProductsController, PricesController }= require('./controllers');
 
 router
-  .get('/products',productController.getProducts)
-  .get('/products/:PRODUCT/prices',productController.getPrices);
+  .get('/products',ProductsController.getProducts)
+  .get('/products/:PRODUCT/prices',PricesController.getPrices);
 
 module.exports = router;
