@@ -1,5 +1,5 @@
 # bitwatch
-Bitwatch is an app that lets you compare market prices for shared cryptocurrency products across the BNB, BFX and BTX exchanges.
+**Bitwatch** is an app that lets you compare market prices for shared cryptocurrency products across the [BNB](https://www.binance.com/en/), [BFX](https://www.bitfinex.com/) and [BTX](https://bittrex.com/) exchanges.
 
 ![](https://res.cloudinary.com/rezziemaven/image/upload/v1539071463/screenhot.png)
 
@@ -34,17 +34,18 @@ A Postman collection was included for you to test the endpoints. If you already 
 ### How to use collection:
 
 1. Set up a new environment for this collection by clicking the settings icon on the top right corner.
-2. Click 'Add' to add a new environment.
-3. Enter 'bitwatch' for the environment name.
-4. Enter a variable name of 'url' with the value 'http://localhost:3000'.
-5. If not already selected, click the dropdown in the top right corner and select 'bitwatch'.
-6. Start sending requests! Just make sure that the backend is up and running (if you haven't, enter the command 'npm run dev').
+2. Click `Add` to add a new environment.
+3. Enter `bitwatch` for the environment name.
+4. Enter a variable name of `url` with the value 'http://localhost:3000'.
+5. If not already selected, click the dropdown in the top right corner and select `bitwatch`.
+6. Start sending requests! Just make sure that the backend is up and running (if you haven't, enter the command `npm run dev`).
 
 ### Endpoints
 
 This server uses two endpoints:
-`/products:` Gets names of all shared cryptocurrency products across the BTX, BNB and BFX exchanges.
-`/products/PRODUCT/prices`: Gets price for desired cryptocurrency product. Replace `PRODUCT` with your desired product, eg. 'BTC-BAT'.
+
+- `/products:` Gets names of all shared cryptocurrency products across the BTX, BNB and BFX exchanges.
+- `/products/PRODUCT/prices`: Gets price for desired cryptocurrency product. Replace `PRODUCT` with your desired product, eg. `BTC-BAT`.
 
 # Tech Stack
 
