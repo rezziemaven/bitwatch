@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "61b9919e-6522-46f3-a8da-534c958c8097",
+		"name": "bitwatch",
+		"description": "#About\nA cryptocurrency tracker application that lets you compare prices across the BTX, BNB and BFX exchanges.\n\n#How to use collection:\n1. Set up a new environment for this collection by clicking the settings icon on the top right corner.\n2. Click 'Add' to add a new environment.\n3. Enter 'bitwatch' for the environment name.\n4. Enter a variable name of 'url' with the value 'http://localhost:3000'.\n5. If not already selected, click the dropdown in the top right corner and select 'bitwatch'.\n6. Start sending requests! Just make sure that the backend is up and running (if you haven't, enter the command 'npm run dev').\n\n#Endpoints\nThis server uses two endpoints:\n/products: Gets names of all shared cryptocurrency products across the BTX, BNB and BFX exchanges.\n/products/PRODUCT/prices: Gets price for desired cryptocurrency product. Replace PRODUCT with your desired product, eg. 'BTC-BAT'.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url3000}}/products",
+					"host": [
+						"{{url3000}}"
+					],
+					"path": [
+						"products"
+					]
+				},
+				"description": "Gets names of all shared cryptocurrency products across BTX, BNB and BFX exchanges."
+			},
+			"response": []
+		},
+		{
+			"name": "Prices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url3000}}/products/eth-lrc/prices",
+					"host": [
+						"{{url3000}}"
+					],
+					"path": [
+						"products",
+						"eth-lrc",
+						"prices"
+					]
+				},
+				"description": "Gets prices for the desired cryptocurrency product mentioned in the PRODUCT route parameter.\n\nTo use:\nSwitch out 'BTC-BAT' with you desired product to get a different result."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8bdefcdd-a140-4418-9a2a-8a80513cb05c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b31b63b7-d656-4dcf-a3ff-3e287619c3a9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
