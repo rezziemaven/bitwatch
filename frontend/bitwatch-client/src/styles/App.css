@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   width: 85%;
-  z-index: 2;
+  z-index: 1;
 }
 
 .Header>img {
@@ -48,13 +48,12 @@ input[type='submit'] {
   margin-top: 10px;
   background-color: #5AC9FF;
   color: white;
-  /* background-image: linear-gradient(to bottom, #3D94F6, #5AC9FF); */
-  /* box-shadow: 2px 2px 5px 0px #909090; */
   background-image: linear-gradient(76.8deg, rgba(49, 217, 255, 1) 0.4%, rgba(0, 180, 253, 1) 87.2%);
   font-size: 1.4rem;
   padding: 10px 0;
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
   transition: box-shadow 1s ease-in-out, background-image 1s ease-in-out;
+  z-index: 0;
 }
 
 input[type='submit']:hover {
