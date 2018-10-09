@@ -9,10 +9,7 @@ body {
   margin: 0;
   padding: 4vh;
   background-color: #011742;
-  /* background: linear-gradient(0deg, rgba(1, 23, 66, 1) 45%, rgba(127, 150, 194, 1) 100%); */
   background: linear-gradient(to right, #1e3c72, #2a5298);
-  /* background-image: radial-gradient(circle 953px at 10% 20%, rgba(22, 79, 141, 1) 0%, rgba(13, 16, 47, 1) 100.2%); */
-  /* background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(0, 102, 161, 1) 0%, rgba(0, 68, 108, 1) 90.1%); */
 }
 
 #root {
