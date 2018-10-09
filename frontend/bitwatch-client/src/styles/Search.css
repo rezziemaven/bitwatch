@@ -3,6 +3,14 @@
   flex: 1;
 }
 
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
 input[type='text'] {
   font-size: 1.2rem;
   height: 40px;
