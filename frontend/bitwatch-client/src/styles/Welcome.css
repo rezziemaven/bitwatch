@@ -8,6 +8,7 @@
   font-weight: 300;
   background-color: black;
   color: white;
+  z-index: 0;
   width: 85%;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -51,6 +52,7 @@ span {
   .Content {
     padding: 20px;
   }
+
   .Content>p {
     font-size: 1rem;
   }
@@ -67,8 +69,6 @@ span {
 .animated {
   animation-duration: 1s;
   animation-fill-mode: both;
-  -webkit-animation-duration: 1s;
-  -webkit-animation-fill-mode: both
 }
 
 .animatedFadeInUp {
@@ -78,7 +78,6 @@ span {
 .fadeInUp {
   opacity: 0;
   animation-name: fadeInUp;
-  -webkit-animation-name: fadeInUp;
 }
 
 @keyframes fadeInUp {
