@@ -14,18 +14,19 @@ This app is divided into three folders: [**frontend**](#frontend), [**backend**]
 **Important:** This server uses the [Moneeda API](https://moneeda.github.io/docs/) to get the list of cryptocurrency products and prices. To use the server properly, you will first have to retrieve a developer token from their [developer portal](https://moneeda.com/developers). This will then need to be included in the .env file (included as a .env.example file in this folder).
 
 1. `cd` from the root level of this repository folder to `backend` in your terminal.
-2. Open the folder in your favourite editor (eg. Enter `code .` in your terminal).
-3. Open the `.env.example` file and replace the value of the `MONEEDA_API_TOKEN` .env variable with your developer token.
-4. Rename the `.env.example` file to `.env`.
-5. In the terminal, enter `npm run dev` to start the server.
+2. Install missing packages by running `npm install` or `npm i`.
+3. Open the folder in your favourite editor (eg. Enter `code .` in your terminal).
+4. Open the `.env.example` file and replace the value of the `MONEEDA_API_TOKEN` .env variable with your developer token.
+5. Rename the `.env.example` file to `.env`.
+6. In the terminal, enter `npm run dev` to start the server.
 
 ## Frontend
 
-To start the app, simply `cd` from the top-level of this repository folder to `frontend/bitwatch-client` in your terminal and enter `npm start`. 
-
-When you see a prompt asking you to switch the port, enter `y`. You should now see the app running in your browser.
-
-Follow the on screen instructions to begin using the app.
+1. `cd` from the top-level of this repository folder to `frontend/bitwatch-client` in your terminal.
+2. Install missing packages by running `npm install` or `npm i`.
+3. Now run the app by entering `npm start`. 
+4. When you see a prompt asking you to switch the port, enter `y`. You should now see the app running in your browser.
+5. Follow the on screen instructions to begin using the app.
 
 ## Postman Collection
 
