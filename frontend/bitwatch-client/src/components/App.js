@@ -6,7 +6,7 @@ import 'styles/App.css';
 import { Welcome, CardList, Search } from 'components';
 import { setProductName, setProducts, savePrices } from 'actions';
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,6 @@ class App extends Component {
       productsFetching: false,
       pricesFetching: false,
       showWelcome: false,
-      showCards: false,
     }
   }
 
@@ -25,7 +24,7 @@ class App extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     if (this.state.product.length) {
-      this.setState ({showWelcome: false, showCards: true});
+      this.setState ({showWelcome: false});
       if (this.state.product.length) await this.props.setProductName(this.state.product.toUpperCase());
       if (this.props.productName) await this.getPrices(this.props.productName);
     }
@@ -45,7 +44,7 @@ class App extends Component {
     this.setState({pricesFetching: false});
   }
 
-  componentDidMount() {this.getProducts()};
+  async componentDidMount() {await this.getProducts()};
 
   render () {
     return (
@@ -59,7 +58,7 @@ class App extends Component {
               backgroundColor: '#C0C0C0',
               backgroundImage: 'none',
               boxShadow: 'none'}
-              : {}} type='submit' value='Get prices' />
+              : {backgroundColor: '#5AC9FF'}} type='submit' value='Get prices' />
           </form>
           {this.props.prices[this.props.productName] ?
             (<h3>Current prices for</h3>) : ''}

@@ -1,0 +1,18 @@
+{
+  "data": {
+    "product": "first",
+    "prices": [{
+        "exchange": "BNB",
+        "price": 0.00007890
+      },
+      {
+        "exchange": "BTX",
+        "price": 0.00005678
+      },
+      {
+        "exchange": "BFX",
+        "price": 0.00001234
+      }
+    ]
+  }
+}
