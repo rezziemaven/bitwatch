@@ -7,9 +7,11 @@ Bitwatch is an app that lets you compare market prices for shared cryptocurrency
 
 This app is divided into three folders: [**frontend**](#frontend), [**backend**](#backend) and [**postman-collection**](#postman-collection). You need both the **frontend** and **backend** running for this app to work properly. You can also use the Postman collection to test the two endpoints provided by the backend. It is recommended that you first start the backend server before running the frontend client.
 
+**Important:** this app is still in development mode. As such, make sure you are in the `develop` branch by entering `git checkout develop` in the terminal in the root level of the folder.
+
 ## Backend
 
-Important: This server uses the [Moneeda API](https://moneeda.github.io/docs/) to get the list of cryptocurrency products and prices. To use the server properly, you will first have to retrieve a developer token from their [developer portal](https://moneeda.com/developers). This will then need to be included in the .env file (included as a .env.example file in this folder).
+**Important:** This server uses the [Moneeda API](https://moneeda.github.io/docs/) to get the list of cryptocurrency products and prices. To use the server properly, you will first have to retrieve a developer token from their [developer portal](https://moneeda.com/developers). This will then need to be included in the .env file (included as a .env.example file in this folder).
 
 1. `cd` from the root level of this repository folder to `backend` in your terminal.
 2. Open the folder in your favourite editor (eg. Enter `code .` in your terminal).
