@@ -15,6 +15,7 @@
     "@koa/cors": "^2.2.2",
     "axios": "^0.18.0",
     "dotenv": "^6.0.0",
+    "event-stream": "^3.3.4",
     "koa": "^2.5.3",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0"
